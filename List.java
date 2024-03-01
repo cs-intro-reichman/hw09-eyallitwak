@@ -45,12 +45,12 @@ public class List {
     /** GIVE Textual representation of this list. */
     public String toString() {
         Node current = first;
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("(");
         while (current != null) {
             sb.append(current + " ");
             current = current.next;
         }
-        return sb.substring(0, sb.length() - 1);
+        return sb.substring(0, sb.length() - 1)+ ")";
     }
 
     /**

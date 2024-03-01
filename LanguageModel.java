@@ -47,6 +47,7 @@ public class LanguageModel {
 
         while (!in.isEmpty()) {
             c = in.readChar();
+            
             List probs = CharDataMap.get(window);
             if (probs == null) {
                 probs = new List();
@@ -54,8 +55,8 @@ public class LanguageModel {
             }
             probs.update(c);
 
-            window = window.substring(1);
             window = window + c;
+            window = window.substring(1);
         }
 
         for (List probs : CharDataMap.values()) {
@@ -75,9 +76,8 @@ public class LanguageModel {
         double totalProb = 0;
         for (int i = 0; i < probs.getSize(); i++) {
             CharData current = probs.get(i);
-            double currentProb = (double) current.count / charTotal;
-            current.p = currentProb;
-            totalProb += currentProb;
+            current.p = (double) current.count / charTotal;
+            totalProb += current.p;
             current.cp = totalProb;
         }
     }
